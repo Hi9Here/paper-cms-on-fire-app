@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>poly foo</title>
+  <title>Hi9 Connecting the Unconnected</title>
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
   <!-- build:css styles/main.css -->
@@ -33,17 +33,43 @@
         <core-toolbar>Menu</core-toolbar>
 
         <!-- Drawer Content -->
-        <core-menu selected="{{pageSelected}}">
-          <core-item label="Home"></core-item>
-          <core-item label="Account"></core-item>
-          <core-item label="Help"></core-item>
-          <core-item label="Feedback"></core-item>
-          <core-item label="Accesability"></core-item>
-          <core-item label="Blog"></core-item>
-          <core-item label="Contact Us"></core-item>
-          <core-item label="Administrator"></core-item>
-        </core-menu>
-
+        <more-route-selector>
+          <core-menu>
+            <core-item label="Home">
+              <a href="{{urlfor('Home')}}"></a>
+            </core-item>
+            <core-item label="Account">
+              <a href="{{urlfor('Account')}}"></a>
+            </core-item>
+            <core-item label="Help">
+              <a href="{{urlfor('Help')}}"></a>
+            </core-item>
+            <core-item label="Feedback">
+              <a href="{{urlfor('Feedback')}}"></a>
+            </core-item>
+            <core-item label="Accesability">
+              <a href="{{urlfor('Accesability')}}"></a>
+            </core-item>
+            <core-item label="Blog">
+              <a href="{{urlfor('Blog')}}"></a>
+            </core-item>
+            <core-item label="Contact Us">
+              <a href="{{urlfor('Contact Us')}}"></a>
+            </core-item>
+            <core-item label="Administrator">
+              <a href="{{urlfor('Administrator')}}"></a>
+            </core-item>
+          </core-menu>
+        </more-route-selector>
+        <more-routing-config driver="hash"></more-routing-config>
+        <more-route name="Home" path="/">
+        <more-route name="Account" path="/account">
+        <more-route name="Help" path="/help">
+        <more-route name="Feedback" path="/feedback">
+        <more-route name="Accesability" path="/accesability">
+        <more-route name="Blog" path="/blog">
+        <more-route name="Contact Us" path="/contact us">
+        <more-route name="Administrator" path="/administrator">
       </core-header-panel>
 
       <!-- Main -->
@@ -55,7 +81,7 @@
           <span flex>{{appName}}</span>
           <paper-menu-button>
           <paper-icon-button icon="social:person"></paper-icon-button>
-          <paper-dropdown class="dropdown" transition="">
+          <paper-dropdown class="dropdown" transition="/">
             <core-menu class="menu">
               <paper-item on-click="{{login}}" hidden?="{{!statusKnown || user}}">Login</paper-item>
               <paper-item on-click="{{logout}}" hidden?="{{!statusKnown || !user}}">Logout</paper-item>
@@ -64,17 +90,18 @@
         </paper-menu-button>
 
         </core-toolbar>
-
-        <core-pages selected="{{pageSelected}}">
-          <div>Home</div>
-          <div>Account</div>
-          <div>Help</div>
-          <div>Feedback</div>
-          <div>Accesability</div>
-          <div>Blog</div>
-          <div>Contact Us</div>
-          <div>Administrator</div>
-        </core-pages>
+        <more-route-selector>
+          <core-pages>
+            <section route="Home">Home</section>
+            <section route="Account">Account</section>
+            <section route="Help">Help</section>
+            <section route="Feedback">Feedback</section>
+            <section route="Accesability">Accesability</section>
+            <section route="Blog">Blog</section>
+            <section route="Contact Us">Contact Us</section>
+            <section route="Administrator">Administrator</section>
+          </core-pages>
+        </more-route-selector>  
       </core-header-panel>
     </core-drawer-panel>
 
