@@ -36,40 +36,31 @@
         <more-route-selector>
           <core-menu>
             <core-item label="Home">
-              <a href="{{urlfor('Home')}}"></a>
+              <a href="{{urlFor('home')}}"></a>
             </core-item>
             <core-item label="Account">
-              <a href="{{urlfor('Account')}}"></a>
+              <a href="{{urlFor('account')}}"></a>
             </core-item>
             <core-item label="Help">
-              <a href="{{urlfor('Help')}}"></a>
+              <a href="{{urlFor('help')}}"></a>
             </core-item>
             <core-item label="Feedback">
-              <a href="{{urlfor('Feedback')}}"></a>
+              <a href="{{urlFor('feedback')}}"></a>
             </core-item>
             <core-item label="Accesability">
-              <a href="{{urlfor('Accesability')}}"></a>
+              <a href="{{urlFor('accesability')}}"></a>
             </core-item>
             <core-item label="Blog">
-              <a href="{{urlfor('Blog')}}"></a>
+              <a href="{{urlFor('blog')}}"></a>
             </core-item>
             <core-item label="Contact Us">
-              <a href="{{urlfor('Contact Us')}}"></a>
+              <a href="{{urlFor('contact us')}}"></a>
             </core-item>
             <core-item label="Administrator">
-              <a href="{{urlfor('Administrator')}}"></a>
+              <a href="{{urlFor('administrator')}}"></a>
             </core-item>
           </core-menu>
         </more-route-selector>
-        <more-routing-config driver="hash"></more-routing-config>
-        <more-route name="Home" path="/">
-        <more-route name="Account" path="/account">
-        <more-route name="Help" path="/help">
-        <more-route name="Feedback" path="/feedback">
-        <more-route name="Accesability" path="/accesability">
-        <more-route name="Blog" path="/blog">
-        <more-route name="Contact Us" path="/contact us">
-        <more-route name="Administrator" path="/administrator">
       </core-header-panel>
 
       <!-- Main -->
@@ -90,16 +81,36 @@
         </paper-menu-button>
 
         </core-toolbar>
-        <more-route-selector>
+        <more-route-selector selectedParams="{{params}}">
           <core-pages>
-            <section route="Home">Home</section>
-            <section route="Account">Account</section>
-            <section route="Help">Help</section>
-            <section route="Feedback">Feedback</section>
-            <section route="Accesability">Accesability</section>
-            <section route="Blog">Blog</section>
-            <section route="Contact Us">Contact Us</section>
-            <section route="Administrator">Administrator</section>
+            <section route="home">
+              <h1>Home</h1>
+            </section>
+            <section route="account">
+              <h1>Account</h1>
+            </section>
+            <section route="help">
+              <h1>Help</h1>
+            </section>
+            <section route="feedback">
+              <h1>Feedback</h1>
+            </section>
+            <section route="accesability">
+              <h1>Accesability</h1>
+            </section>
+            <section route="blog">
+              <h1>Blog</h1>
+            </section>
+            <section route="contact us">
+              <h1>Contact Us</h1>
+            </section>
+            <section route="administrator">
+              <h1>Administrator</h1>
+                <paper-form-on-fire linkText="New Category" firebase_url_data="https://hi9.firebaseio.com/data/category" firebase_url_form="https://hi9.firebaseio-demo.com/forms/category">
+                </paper-form-on-fire>
+                <paper-form-on-fire linkText="New Card" firebase_url_data="https://hi9.firebaseio.com/data/card" firebase_url_form="https://hi9.firebaseio-demo.com/forms/card">
+                </paper-form-on-fire>
+            </section>
           </core-pages>
         </more-route-selector>  
       </core-header-panel>
