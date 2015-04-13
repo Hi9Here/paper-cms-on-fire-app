@@ -84,9 +84,12 @@
             <h3>My Firebase Data</h3>
 
             <template repeat="{{key in keys}}">
-              <p>{{data[key].card_title}}</p>
-              <p>{{data[key].type}}</p>
-              <p>{{data[key].url}}</p>
+              <paper-card class="{{data[key].type}}" heading="{{data[key].card_title}}">
+                <div content>{{data[key].url}}</div>
+                <div actions>
+                  <paper-button dismissive>Some action</paper-button>
+                </div actions>
+              </paper-card>          
             </template>
 
             </section>
