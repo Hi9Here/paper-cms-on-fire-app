@@ -73,6 +73,8 @@
             <a href="http://dev.hi9.uk"></a>
           </paper-icon-button>
           <span flex>{{appName}}</span>
+          <button on-tap="{{login}}" hidden?="{{!statusKnown || user}}">Login</button>
+          <button on-tap="{{logout}}" hidden?="{{!statusKnown || !user}}">Logout</button>
           <paper-button>Sign in or Register</paper-button>
           <paper-icon-button icon="account-circle"></paper-icon-button>
         </core-toolbar>
@@ -80,7 +82,7 @@
           <core-pages>
             <section route="home">
             <firebase-element id="base" location="https://hi9.firebaseio.com/data/card" data="{{data}}" keys="{{keys}}"></firebase-element>
-
+            <firebase-login id="login" user="{{user}}" statusKnown="{{statusKnown}}" location="https://hi9.firebaseio.com" provider="google"></firebase-login>
             <h3>My Firebase Data</h3>
 
             <template repeat="{{key in keys}}">
