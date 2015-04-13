@@ -84,7 +84,16 @@
         <more-route-selector selectedParams="{{params}}">
           <core-pages>
             <section route="home">
-              <h1>Home</h1>
+            <firebase-element id="base" location="https://hi9.firebaseio.com/data/card" data="{{data}}" keys="{{keys}}"></firebase-element>
+
+            <h3>My Firebase Data</h3>
+
+            <template repeat="{{key in keys}}">
+              <p>{{data[key].card_title}}</p>
+              <p>{{data[key].type}}</p>
+              <p>{{data[key].url}}</p>
+            </template>
+
             </section>
             <section route="account">
               <h1>Account</h1>

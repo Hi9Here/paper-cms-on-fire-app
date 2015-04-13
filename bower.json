@@ -7,7 +7,10 @@
     "polymer": "Polymer/polymer#^0.5.4",
     "paper-form-on-fire": "*",
     "core-header-panel": "Polymer/core-header-panel#~0.5.5",
-    "core-pages": "Polymer/core-pages#~0.5.5"
+    "core-pages": "Polymer/core-pages#~0.5.5",
+    "more-routing": "polymore/more-routing#~0.5.0",
+    "core-animated-pages": "Polymer/core-animated-pages#~0.5.5",
+    "paper-card": "PolymerLabs/paper-card"
   },
   "devDependencies": {
     "web-component-tester": "Polymer/web-component-tester#^2.2.3"
