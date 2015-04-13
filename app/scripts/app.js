@@ -27,7 +27,6 @@
       fbLogin.logout();
     };
     
-    });
   });
 
 // wrap document so it plays nice with other libraries
