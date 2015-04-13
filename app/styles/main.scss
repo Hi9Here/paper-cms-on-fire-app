@@ -36,3 +36,7 @@ core-toolbar {
   color: #FAFAFA;
   background-color: #009688;
 }
+
+paper-button :host {
+  text-transform: none;
+}
