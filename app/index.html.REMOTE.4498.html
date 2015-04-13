@@ -73,8 +73,10 @@
             <a href="http://dev.hi9.uk"></a>
           </paper-icon-button>
           <span flex>{{appName}}</span>
-          <paper-button id="register">Sign in or Register</paper-button>
-          <paper-icon-button icon="account-circle" id="login"></paper-icon-button>
+          <button on-tap="{{login}}" hidden?="{{!statusKnown || user}}">Login</button>
+          <button on-tap="{{logout}}" hidden?="{{!statusKnown || !user}}">Logout</button>
+          <paper-button>Sign in or Register</paper-button>
+          <paper-icon-button icon="account-circle"></paper-icon-button>
         </core-toolbar>
         <more-route-selector selectedParams="{{params}}">
           <core-pages>

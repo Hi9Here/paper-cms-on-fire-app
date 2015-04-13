@@ -9,10 +9,28 @@
 
   // Listen for template bound event to know when bindings
   // have resolved and content has been stamped to the page
-  app.addEventListener('template-bound', function() {
+  app.addEventListener('template-bound', function(e) {
     console.log('Our app is ready to rock!');
+    var scope = e.target;
+    var fbLogin = document.querySelector("#login");
+
+    scope.login = function() {
+      try {
+        this.params = JSON.parse(document.querySelector("#params").value);
+      } catch (e) {
+        this.params = null;
+      }
+      fbLogin.login();
+    };
+     
+    scope.logout = function() {
+      fbLogin.logout();
+    };
+    
   });
 
 // wrap document so it plays nice with other libraries
 // http://www.polymer-project.org/platform/shadow-dom.html#wrappers
+//
+
 })(wrap(document));
