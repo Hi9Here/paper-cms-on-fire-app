@@ -40,3 +40,9 @@ core-toolbar {
 paper-button :host {
   text-transform: none;
 }
+
+@media all and (max-width: 600px) {
+    #register {
+        display:none;
+    }
+}
