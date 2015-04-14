@@ -23,7 +23,10 @@
       }
       fbLogin.login();
     };
-     
+    scope.justTypes = function(a,b){
+      console.log(a);
+      console.log(b);
+    }
     scope.logout = function() {
       fbLogin.logout();
     };

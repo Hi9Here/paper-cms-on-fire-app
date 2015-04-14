@@ -81,8 +81,8 @@
             <section route="home">
             <firebase-element id="base" location="https://hi9.firebaseio.com/data/card" data="{{data}}" keys="{{keys}}"></firebase-element>
             <firebase-login id="login" user="{{user}}" statusKnown="{{statusKnown}}" location="https://hi9.firebaseio.com" provider="google"></firebase-login>
-            <template repeat="{{key in keys}}">
-            <paper-button> {{data[key].type}} </paper-button>
+            <template repeat="{{key in keys | justTypes(data)}}">
+                <paper-button> {{data[key].type}} </paper-button>
             </template>
             <template repeat="{{key in keys}}">
               <paper-card class="{{data[key].type}}" class="fancy" disableswipe headingcolor="#e9005f" image="{{data[key].image}}" heading="{{data[key].card_title}}">
