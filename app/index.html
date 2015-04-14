@@ -70,7 +70,7 @@
         <core-toolbar>
           <paper-icon-button icon="menu" core-drawer-toggle></paper-icon-button>
           <paper-icon-button icon="home">
-            <a href="http://dev.hi9.uk"></a>
+            <a href="{{urlFor('home')}}"></a>
           </paper-icon-button>
           <span flex>{{appName}}</span>
           <paper-button on-tap="{{login}}" hidden?="{{!statusKnown || user}}">Sign in or Register</paper-button>
