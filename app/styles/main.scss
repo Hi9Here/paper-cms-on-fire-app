@@ -37,7 +37,7 @@ core-toolbar {
   background-color: #009688;
 }
 
-paper-button :deep {
+paper-button :host {
   text-transform: none;
 }
 
@@ -47,4 +47,7 @@ paper-button :deep {
     }
 }
 
+paper-card :host .header img {
+  width: 100px;
+}
 
