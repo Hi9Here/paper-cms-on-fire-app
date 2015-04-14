@@ -1,6 +1,6 @@
 body {
   background: #fafafa;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
   color: #333;
 }
 
@@ -90,4 +90,7 @@ paper-button {
 .fancy .medium {
   font-size: 16px;
   padding-bottom: 8px;
+}
+paper-card :host .header img {
+  width: 100px;
 }
