@@ -1,6 +1,6 @@
 body {
   background: #fafafa;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
   color: #333;
 }
 
@@ -37,7 +37,7 @@ core-toolbar {
   background-color: #009688;
 }
 
-paper-button :host {
+paper-button :deep {
   text-transform: none;
 }
 
@@ -46,3 +46,5 @@ paper-button :host {
         display:none;
     }
 }
+
+
