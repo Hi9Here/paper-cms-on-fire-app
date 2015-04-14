@@ -13,6 +13,7 @@
     console.log('Our app is ready to rock!');
     var scope = e.target;
     var fbLogin = document.querySelector("#login");
+    var drawer = document.querySelector('core-drawer-panel');
 
     scope.login = function() {
       try {
@@ -26,7 +27,10 @@
     scope.logout = function() {
       fbLogin.logout();
     };
-    
+    scope.drawerClose = function() {
+      drawer.closeDrawer();
+      drawer.selected; // 'main'
+    }
   });
 
 // wrap document so it plays nice with other libraries
