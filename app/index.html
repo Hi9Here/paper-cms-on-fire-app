@@ -86,9 +86,8 @@
                 <paper-button on-tap="{{setCardFilter}}">{{data[key].type}}</paper-button>
                 </template>
               </section>
-              debug {{cardFilter}}
               <section>
-                <template repeat="{{key in keys}}">
+                <template repeat="{{key in keys | justCardsOfType(data,cardFilter)}}">
                   <paper-card class="{{data[key].type}}" class="fancy" disableswipe headingcolor="#e9005f" image="{{data[key].image}}" heading="{{data[key].card_title}}">
                     <div content>{{data[key].url}}</div>
                   </paper-card>          

@@ -16,6 +16,14 @@ function firstType (value,data) {
   }
   return true;
 }  
+function ofType (value,data,type) {
+  var attr = data[value].type; 
+  if (data[isFirstValue].type === attr) {
+    return false;
+  } else {
+    return true;
+  }
+}
 (function (document) {
   'use strict';
 
@@ -47,7 +55,15 @@ function firstType (value,data) {
           output.push(entry); 
         }
       });
-      
+      return output;
+    };
+    scope.justCardsOfType = function(value,data,type){
+      var output = [];
+      value.forEach(function(entry) {
+        if (ofType(entry,data,type)) {
+          output.push(entry); 
+        }
+      });
       return output;
     };
     scope.logout = function() {
