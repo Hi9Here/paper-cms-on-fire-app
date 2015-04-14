@@ -12,12 +12,12 @@
   app.addEventListener('template-bound', function(e) {
     console.log('Our app is ready to rock!');
     var scope = e.target;
-    var fbLogin = document.querySelector("#login");
+    var fbLogin = document.querySelector('#login');
     var drawer = document.querySelector('core-drawer-panel');
 
     scope.login = function() {
       try {
-        this.params = JSON.parse(document.querySelector("#params").value);
+        this.params = JSON.parse(document.querySelector('#params').value);
       } catch (e) {
         this.params = null;
       }
