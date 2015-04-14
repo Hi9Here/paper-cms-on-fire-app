@@ -84,7 +84,7 @@
             <h3>My Firebase Data</h3>
 
             <template repeat="{{key in keys}}">
-              <paper-card class="{{data[key].type}}" disableswipe headingcolor="#e9005f" image="{{data[key].image}}" heading="{{data[key].card_title}}">
+              <paper-card class="{{data[key].type}}" class="fancy" disableswipe headingcolor="#e9005f" image="{{data[key].image}}" heading="{{data[key].card_title}}">
                 <div content>{{data[key].url}}</div>
               </paper-card>          
             </template>

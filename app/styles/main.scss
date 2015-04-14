@@ -46,3 +46,48 @@ paper-button :host {
         display:none;
     }
 }
+
+paper-card {
+  width: 280px; height: 300px; margin: 8px auto;
+}
+
+paper-card [autofocus] {
+  color: #ff9c33;
+}
+
+paper-button {
+  font-size: 14px;
+}
+
+.fancy .round-placeholder {
+  display: inline-block;
+  height: 64px;
+  width: 64px;
+  border-radius: 50%;
+  background: #e9005f;
+  color: white;
+  line-height: 64px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.fancy .title {
+  position: absolute;
+  top: 30px;
+  left: 100px;
+}
+
+.fancy img {
+  width: 100%;
+}
+
+.fancy .big {
+  font-size: 22px;
+  padding: 8px 0 16px;
+  color: #888;
+}
+
+.fancy .medium {
+  font-size: 16px;
+  padding-bottom: 8px;
+}
