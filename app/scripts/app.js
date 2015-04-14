@@ -41,7 +41,6 @@ function firstType (value,data) {
       fbLogin.login();
     };
     scope.justTypes = function(value,data){
-      console.log('value :' + value);
       var output = [];
       value.forEach(function(entry) {
         if (firstType(entry,data)) {
@@ -54,9 +53,13 @@ function firstType (value,data) {
     scope.logout = function() {
       fbLogin.logout();
     };
+    scope.setCardFilter = function(e) {
+      scope.cardFilter = e.currentTarget.innerHTML;
+    };
     scope.drawerClose = function() {
       drawer.closeDrawer();
     };
+    scope.cardFilter = 'i';
   });
 
 // wrap document so it plays nice with other libraries

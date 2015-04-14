@@ -83,9 +83,10 @@
               <firebase-login id="login" user="{{user}}" statusKnown="{{statusKnown}}" location="https://hi9.firebaseio.com" provider="google"></firebase-login>
               <section>
                 <template repeat="{{key in keys | justTypes(data)}}">
-                  <paper-button> {{data[key].type}} </paper-button>
+                <paper-button on-tap="{{setCardFilter}}">{{data[key].type}}</paper-button>
                 </template>
               </section>
+              debug {{cardFilter}}
               <section>
                 <template repeat="{{key in keys}}">
                   <paper-card class="{{data[key].type}}" class="fancy" disableswipe headingcolor="#e9005f" image="{{data[key].image}}" heading="{{data[key].card_title}}">
