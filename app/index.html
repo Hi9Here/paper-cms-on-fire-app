@@ -73,7 +73,6 @@
             <a href="http://dev.hi9.uk"></a>
           </paper-icon-button>
           <span flex>{{appName}}</span>
-          <button on-tap="{{logout}}" hidden?="{{!statusKnown || !user}}">Logout</button>
           <paper-button on-tap="{{login}}" hidden?="{{!statusKnown || user}}">Sign in or Register</paper-button>
           <paper-icon-button on-tap="{{login}}" icon="account-circle" hidden?="{{!statusKnown || user}}"></paper-icon-button>
         </core-toolbar>
@@ -85,7 +84,7 @@
             <h3>My Firebase Data</h3>
 
             <template repeat="{{key in keys}}">
-              <paper-card class="{{data[key].type}}" disableswipe image="{{data[key].image}}" heading="{{data[key].card_title}}">
+              <paper-card class="{{data[key].type}}" disableswipe headingcolor="#e9005f" image="{{data[key].image}}" heading="{{data[key].card_title}}">
                 <div content>{{data[key].url}}</div>
               </paper-card>          
             </template>
@@ -93,6 +92,7 @@
             </section>
             <section route="account">
               <h1>Account</h1>
+              <paper-button on-tap="{{logout}}" hidden?="{{!statusKnown || !user}}">Logout</paper-button>
             </section>
             <section route="help">
               <h1>Help</h1>
