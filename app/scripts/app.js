@@ -1,3 +1,21 @@
+function firstType (value,data) {
+  var isFirstValue = value;
+  var isFirst = false;
+  for(var index in data) { 
+    var attr = data[index].type; 
+    if (data[isFirstValue].type === attr) {
+      if (isFirst) {
+        return false;
+      } else {
+        isFirst = true;
+      }
+      if (index === isFirstValue) {
+        return isFirst;
+      }
+    }
+  }
+  return true;
+}  
 (function (document) {
   'use strict';
 
@@ -28,7 +46,7 @@
       value.forEach(function(entry) {
         if (firstType(entry,data)) {
           output.push(entry); 
-        };
+        }
       });
       
       return output;
@@ -38,8 +56,7 @@
     };
     scope.drawerClose = function() {
       drawer.closeDrawer();
-      drawer.selected; // 'main'
-    }
+    };
   });
 
 // wrap document so it plays nice with other libraries
@@ -51,19 +68,3 @@
   //if (firstType(value,data)) return value; 
 //}
 
-function firstType (value,data) {
-  var isFirst_value = value;
-  var isFirst = false;
-  for(var index in data) { 
-    var attr = data[index].type; 
-    if (data[isFirst_value].type == attr) {
-      if (isFirst) {
-        return false;
-      } else {
-        isFirst = true;
-      }
-      if (index == isFirst_value) return isFirst; 
-    }
-  }
-  return true;
-}  

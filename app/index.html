@@ -87,13 +87,12 @@
                 </template>
               </section>
               <section>
-              <template repeat="{{key in keys}}">
-                <paper-card class="{{data[key].type}}" class="fancy" disableswipe headingcolor="#e9005f" image="{{data[key].image}}" heading="{{data[key].card_title}}">
-                  <div content>{{data[key].url}}</div>
-                </paper-card>          
-              </template>
-
-            </section>
+                <template repeat="{{key in keys}}">
+                  <paper-card class="{{data[key].type}}" class="fancy" disableswipe headingcolor="#e9005f" image="{{data[key].image}}" heading="{{data[key].card_title}}">
+                    <div content>{{data[key].url}}</div>
+                  </paper-card>          
+                </template>
+              </section>
             </section>
             <section route="account">
               <h1>Account</h1>
