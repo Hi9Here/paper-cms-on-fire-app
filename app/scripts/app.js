@@ -14,7 +14,6 @@
     var scope = e.target;
     var fbLogin = document.querySelector('#login');
     var drawer = document.querySelector('core-drawer-panel');
-
     scope.login = function() {
       try {
         this.params = JSON.parse(document.querySelector('#params').value);
@@ -23,10 +22,17 @@
       }
       fbLogin.login();
     };
-    scope.justTypes = function(a,b){
-      console.log(a);
-      console.log(b);
-    }
+    scope.justTypes = function(value,data){
+      console.log('value :' + value);
+      var output = [];
+      value.forEach(function(entry) {
+        if (firstType(entry,data)) {
+          output.push(entry); 
+        };
+      });
+      
+      return output;
+    };
     scope.logout = function() {
       fbLogin.logout();
     };
@@ -38,6 +44,26 @@
 
 // wrap document so it plays nice with other libraries
 // http://www.polymer-project.org/platform/shadow-dom.html#wrappers
-//
-
+ 
 })(wrap(document));
+
+//PolymerExpressions.prototype.justTypes = function(value,data){
+  //if (firstType(value,data)) return value; 
+//}
+
+function firstType (value,data) {
+  var isFirst_value = value;
+  var isFirst = false;
+  for(var index in data) { 
+    var attr = data[index].type; 
+    if (data[isFirst_value].type == attr) {
+      if (isFirst) {
+        return false;
+      } else {
+        isFirst = true;
+      }
+      if (index == isFirst_value) return isFirst; 
+    }
+  }
+  return true;
+}  
