@@ -89,8 +89,8 @@
               <h1>{{cardFilter}}</h1>
               <section>
               <template repeat="{{key in processedKeys}}">
-                  <paper-card class="{{data[key].type}}" class="fancy" disableswipe headingcolor="#e9005f" image="{{data[key].image}}" heading="{{data[key].card_title}}">
-                    <div content>{{data[key].url}}</div>
+                  <paper-card class="{{data[key].type}}" class="fancy" disableswipe image="{{data[key].image}}">
+                    <a content href="{{data[key].url}}">{{data[key].card_title}}</a>
                   </paper-card>          
                 </template>
               </section>
