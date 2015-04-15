@@ -52,7 +52,7 @@ function ofType (value,data,type) {
       fbLogin.login();
     };
     scope.justTypes = function(value,data){
-      var output = ['all'];
+      var output = [];
       value.forEach(function(entry) {
         if (firstType(entry,data)) {
           output.push(entry); 
@@ -61,7 +61,7 @@ function ofType (value,data,type) {
       return output;
     };
     scope.justCardsOfType = function(value,data,type){
-      if (type === 'all') {
+      if (type === 'All') {
         return value;
       } else {
         var output = [];
@@ -83,7 +83,7 @@ function ofType (value,data,type) {
     scope.drawerClose = function() {
       drawer.closeDrawer();
     };
-    scope.cardFilter = 'all';
+    scope.cardFilter = 'All';
   });
 
 // wrap document so it plays nice with other libraries
