@@ -21,8 +21,13 @@
 </head>
 
 <body unresolved fullbleed layout vertical>
+  <more-routing-config driver="hash"></more-routing-config>
+
   <template is="auto-binding" id="app">
 
+    <template repeat="{{page in pages}}">
+      <more-route name="{{page.title}}" path="{{page.url}}"></more-route>
+    </template>
     <core-drawer-panel>
 
       <!-- Drawer -->
@@ -32,37 +37,13 @@
         <core-toolbar>Menu</core-toolbar>
 
         <!-- Drawer Content -->
-        <more-route-selector>
-          <core-menu id="menu" >
-            <core-item label="Home">
-              <a href="{{urlFor('home')}}" onclick="{{drawerClose}}"></a>
+        <core-menu id="menu">
+          <template repeat="{{page in pages}}">
+            <core-item label="{{page.title}}" hidden?="{{pageVisible(page)}}" >
+              <a href="#!/{{page.url}}"></a>
             </core-item>
-            <core-item label="Map">
-              <a href="{{urlFor('map')}}"></a>
-            </core-item>
-            <core-item label="Account" hidden?="{{!statusKnown || !user}}">
-              <a href="{{urlFor('account')}}"></a>
-            </core-item>
-            <core-item label="Help">
-              <a href="{{urlFor('help')}}"></a>
-            </core-item>
-            <core-item label="Feedback">
-              <a href="{{urlFor('feedback')}}"></a>
-            </core-item>
-            <core-item label="Accesability">
-              <a href="{{urlFor('accesability')}}"></a>
-            </core-item>
-            <core-item label="Blog">
-              <a href="{{urlFor('blog')}}"></a>
-            </core-item>
-            <core-item label="Contact Us">
-              <a href="{{urlFor('contact us')}}"></a>
-            </core-item>
-            <core-item label="Administrator" hidden?="{{!statusKnown || !user}}">
-              <a href="{{urlFor('administrator')}}"></a>
-            </core-item>
-          </core-menu>
-        </more-route-selector>
+          </template>
+        </core-menu>
       </core-header-panel>
 
       <!-- Main -->
@@ -75,60 +56,16 @@
             <a href="{{urlFor('home')}}"></a>
           </paper-icon-button>
           <span flex>{{appName}}</span>
-          <paper-button on-tap="{{login}}" hidden?="{{!statusKnown || user}}">Sign in or Register</paper-button>
+          <paper-button on-tap="{{login}}" hidden?="{{!statusKnown || user}}">Sign in</paper-button>
           <paper-icon-button on-tap="{{login}}" icon="account-circle" hidden?="{{!statusKnown || user}}"></paper-icon-button>
         </core-toolbar>
         <more-route-selector selectedParams="{{params}}">
           <core-pages>
-            <section route="home">
-            <firebase-element id="base" location="https://hi9.firebaseio.com/data/card" data="{{data}}" keys="{{keys}}" on-data-change="{{dataChange}}"></firebase-element>
-              <firebase-login id="login" user="{{user}}" statusKnown="{{statusKnown}}" location="https://hi9.firebaseio.com" provider="google"></firebase-login>
-              <section>
-                <paper-button on-tap="{{setCardFilter}}">All</paper-button>
-                <template repeat="{{key in keys | justTypes(data)}}">
-                  <paper-button on-tap="{{setCardFilter}}">{{data[key].type}}</paper-button>
-                </template>
+            <template repeat="{{page in pages}}">
+              <section route="{{page.url}}" hidden?="{{pageVisible(page)}}" >
+                {{page.html}}
               </section>
-              <h1>{{cardFilter}}</h1>
-              <section>
-              <template repeat="{{key in processedKeys}}">
-                  <paper-card class="{{data[key].type}}" class="fancy" disableswipe image="{{data[key].image}}">
-                    <a content href="{{data[key].url}}">{{data[key].card_title}}</a>
-                  </paper-card>          
-                </template>
-              </section>
-            </section>
-            <section route="account" hidden?="{{!statusKnown || !user}}">
-              <h1>Account</h1>
-              <paper-button on-tap="{{logout}}" hidden?="{{!statusKnown || !user}}">Logout</paper-button>
-            </section>
-            <section route="help">
-              <h1>Help</h1>
-            </section>
-            <section route="map">
-              <h1>Map</h1>
-              <paper-map-on-fire url="https://golowan-app.firebaseio.com/" centering="50.1195709,-5.5431319">
-              </paper-map-on-fire>
-            </section>
-            <section route="feedback">
-              <h1>Feedback</h1>
-            </section>
-            <section route="accesability">
-              <h1>Accesability</h1>
-            </section>
-            <section route="blog">
-              <h1>Blog</h1>
-            </section>
-            <section route="contact us">
-              <h1>Contact Us</h1>
-            </section>
-            <section route="administrator" hidden?="{{!statusKnown || !user}}">
-              <h1>Administrator</h1>
-                <paper-form-on-fire linkText="New Category" firebase_url_data="https://hi9.firebaseio.com/data/category" firebase_url_form="https://hi9.firebaseio-demo.com/forms/category">
-                </paper-form-on-fire>
-                <paper-form-on-fire linkText="New Card" firebase_url_data="https://hi9.firebaseio.com/data/card" firebase_url_form="https://hi9.firebaseio-demo.com/forms/card">
-                </paper-form-on-fire>
-            </section>
+            </template>
           </core-pages>
         </more-route-selector>  
       </core-header-panel>

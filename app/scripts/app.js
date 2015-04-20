@@ -42,7 +42,13 @@ function ofType (value,data,type) {
     scope.dataChange = function() {
       scope.processedKeys = scope.justCardsOfType(scope.keys,scope.data,scope.cardFilter);
     };
-
+    scope.pageVisible = function() {
+      return true;
+    };
+    scope.pages = [
+      {"title":"Home","url":"/","mod":"-rwxrwxr-x","own":"root:root","html":'<firebase-element id="base" location="https://hi9.firebaseio.com/data/card" data="{{data}}" keys="{{keys}}" on-data-change="{{dataChange}}"></firebase-element><firebase-login id="login" user="{{user}}" statusKnown="{{statusKnown}}" location="https://hi9.firebaseio.com" provider="google"></firebase-login><section><paper-button on-tap="{{setCardFilter}}">All</paper-button><template repeat="{{key in keys | justTypes(data)}}"><paper-button on-tap="{{setCardFilter}}">{{data[key].type}}</paper-button></template></section><h1>{{cardFilter}}</h1><section><template repeat="{{key in processedKeys}}"><paper-card class="{{data[key].type}}" class="fancy" disableswipe image="{{data[key].image}}"><a content href="{{data[key].url}}">{{data[key].card_title}}</a></paper-card></template></section>'},
+      {"title":"Administrator","url":"/admin","mod":"----------","own":"root:root","html":'<h1>Account</h1> <paper-button on-tap="{{logout}}" hidden?="{{!statusKnown || !user}}">Logout</paper-button>'}
+    ];
     scope.login = function() {
       try {
         this.params = JSON.parse(document.querySelector('#params').value);
@@ -84,6 +90,7 @@ function ofType (value,data,type) {
       drawer.closeDrawer();
     };
     scope.cardFilter = 'All';
+
   });
 
 // wrap document so it plays nice with other libraries
