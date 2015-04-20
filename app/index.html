@@ -98,7 +98,7 @@
                 </template>
               </section>
             </section>
-            <section route="account">
+            <section route="account" hidden?="{{!statusKnown || !user}}">
               <h1>Account</h1>
               <paper-button on-tap="{{logout}}" hidden?="{{!statusKnown || !user}}">Logout</paper-button>
             </section>
