@@ -40,7 +40,7 @@
             <core-item label="Map">
               <a href="{{urlFor('map')}}"></a>
             </core-item>
-            <core-item label="Account">
+            <core-item label="Account" hidden?="{{!statusKnown || !user}}">
               <a href="{{urlFor('account')}}"></a>
             </core-item>
             <core-item label="Help">
