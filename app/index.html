@@ -35,7 +35,10 @@
         <more-route-selector>
           <core-menu id="menu" >
             <core-item label="Home">
-            <a href="{{urlFor('home')}}" onclick="{{drawerClose}}"></a>
+              <a href="{{urlFor('home')}}" onclick="{{drawerClose}}"></a>
+            </core-item>
+            <core-item label="Map">
+              <a href="{{urlFor('map')}}"></a>
             </core-item>
             <core-item label="Account">
               <a href="{{urlFor('account')}}"></a>
@@ -55,7 +58,7 @@
             <core-item label="Contact Us">
               <a href="{{urlFor('contact us')}}"></a>
             </core-item>
-            <core-item label="Administrator">
+            <core-item label="Administrator" hidden?="{{!statusKnown || !user}}">
               <a href="{{urlFor('administrator')}}"></a>
             </core-item>
           </core-menu>
@@ -102,6 +105,11 @@
             <section route="help">
               <h1>Help</h1>
             </section>
+            <section route="map">
+              <h1>Map</h1>
+              <paper-map-on-fire url="https://golowan-app.firebaseio.com/" centering="50.1195709,-5.5431319">
+              </paper-map-on-fire>
+            </section>
             <section route="feedback">
               <h1>Feedback</h1>
             </section>
@@ -114,7 +122,7 @@
             <section route="contact us">
               <h1>Contact Us</h1>
             </section>
-            <section route="administrator">
+            <section route="administrator" hidden?="{{!statusKnown || !user}}">
               <h1>Administrator</h1>
                 <paper-form-on-fire linkText="New Category" firebase_url_data="https://hi9.firebaseio.com/data/category" firebase_url_form="https://hi9.firebaseio-demo.com/forms/category">
                 </paper-form-on-fire>
