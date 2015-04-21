@@ -42,19 +42,31 @@ function ofType (value,data,type) {
     scope.dataChange = function() {
       scope.processedKeys = scope.justCardsOfType(scope.keys,scope.data,scope.cardFilter);
     };
+    scope.users = [
+      {'uid':'100713082423959753395'}
+    ];
     scope.pageVisible = function(page) {
       console.log(page);
-      console.log(scope.user);
+      if (scope.user.uid.split(':')[1] === scope.user1) {
+        return true;
+      } else if (page.mod[7] === 'r') { // All
+        return true;
+      } else if (page.mod[4] === 'r') { // Group
+        return user_group(scope.user,page.own.split(':')[1]);
+      } else if (page.mod[1] === 'r') { // User
+        return scope.user.uid === page.own.split(':')[0]);
+      }
       return true;
     };
-    scope.pageOn = 1;
+    scope.pageOn = 0;
+
     scope.pages = [
       {'title':'Home','url':'/','mod':'-rwxrwxr-x','own':'root:root','html':'<firebase-element id="base" location="https://hi9.firebaseio.com/data/card" data="{{data}}" keys="{{keys}}" on-data-change="{{dataChange}}"></firebase-element><section><paper-button on-tap="{{setCardFilter}}">All</paper-button><template repeat="{{key in keys | justTypes(data)}}"><paper-button on-tap="{{setCardFilter}}">{{data[key].type}}</paper-button></template></section><h1>{{cardFilter}}</h1><section><template repeat="{{key in processedKeys}}"><paper-card class="{{data[key].type}}" class="fancy" disableswipe image="{{data[key].image}}"><a content href="{{data[key].url}}">{{data[key].card_title}}</a></paper-card></template></section>'},
-      {'title':'Map','url':'/map','mod':'-rwxrwxr-x','own':'root:root','html':'<paper-map-on-fire style="width: 100%;height: 463px;position: absolute;" url="https://golowan-app.firebaseio.com/" centering="50.1195709,-5.5431319"></paper-map-on-fire>'}
+      {'title':'Map','url':'/map','mod':'-rwxrwxr-x','own':'root:root','html':'<paper-map-on-fire flex style="width: 100%;height: 463px;position: absolute;" url="https://golowan-app.firebaseio.com/" centering="50.1195709,-5.5431319"></paper-map-on-fire>'}
     ];
-    scope.pages.forEach(function(thepage) {
-      //page(thepage.url,fn);
-    });
+//    scope.pages.forEach(function(thepage) {
+//      page(thepage.url,fn);
+  //  });
     scope.login = function() {
       try {
         this.params = JSON.parse(document.querySelector('#params').value);
