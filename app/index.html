@@ -21,13 +21,9 @@
 </head>
 
 <body unresolved fullbleed layout vertical>
-  <more-routing-config driver="hash"></more-routing-config>
 
   <template is="auto-binding" id="app">
 
-    <template repeat="{{page in pages}}">
-      <more-route name="{{page.title}}" path="{{page.url}}"></more-route>
-    </template>
     <core-drawer-panel>
 
       <!-- Drawer -->
@@ -39,8 +35,8 @@
         <!-- Drawer Content -->
         <core-menu id="menu">
           <template repeat="{{page in pages}}">
-            <core-item label="{{page.title}}" hidden?="{{pageVisible(page)}}" >
-              <a href="#!/{{page.url}}"></a>
+            <core-item label="{{page.title}}" hidden?="{{!pageVisible(page)}}" >
+              <a href="#!{{page.url}}"></a>
             </core-item>
           </template>
         </core-menu>
@@ -53,27 +49,25 @@
         <core-toolbar>
           <paper-icon-button icon="menu" core-drawer-toggle></paper-icon-button>
           <paper-icon-button icon="home">
-            <a href="{{urlFor('home')}}"></a>
+            <a href="/"></a>
           </paper-icon-button>
           <span flex>{{appName}}</span>
           <paper-button on-tap="{{login}}" hidden?="{{!statusKnown || user}}">Sign in</paper-button>
           <paper-icon-button on-tap="{{login}}" icon="account-circle" hidden?="{{!statusKnown || user}}"></paper-icon-button>
         </core-toolbar>
-        <more-route-selector selectedParams="{{params}}">
-          <core-pages>
-            <template repeat="{{page in pages}}">
-              <section route="{{page.url}}" hidden?="{{pageVisible(page)}}" >
-                {{page.html}}
-              </section>
-            </template>
-          </core-pages>
-        </more-route-selector>  
+        <core-pages>
+          <template repeat="{{page in pages}}">
+            <section route="{{page.url}}" hidden?="{{!pageVisible(page)}}" >
+              {{page.html}}
+            </section>
+          </template>
+        </core-pages>
       </core-header-panel>
     </core-drawer-panel>
-
+    <firebase-login id="login" user="{{user}}" statusKnown="{{statusKnown}}" location="https://hi9.firebaseio.com" provider="google"></firebase-login>
   </template>
   
-  <script src="bower_components/page/page.js"></script>
+  <!-- <script src="bower_components/page/page.js"></script> -->
   <!-- build:js scripts/app.js -->
   <script src="scripts/app.js"></script>
   <!-- endbuild-->
