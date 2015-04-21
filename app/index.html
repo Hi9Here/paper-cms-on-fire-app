@@ -33,12 +33,13 @@
         <core-toolbar>Menu</core-toolbar>
 
         <!-- Drawer Content -->
-        <core-menu id="menu">
+        <core-menu id="menu" selected="{{pageOn}}">
           <template repeat="{{page in pages}}">
             <core-item label="{{page.title}}" hidden?="{{!pageVisible(page)}}" >
               <a href="#!{{page.url}}"></a>
             </core-item>
           </template>
+          <core-item hidden?='{{statusKnown || user}}'>Account</core-item>
         </core-menu>
       </core-header-panel>
 
@@ -55,12 +56,15 @@
           <paper-button on-tap="{{login}}" hidden?="{{!statusKnown || user}}">Sign in</paper-button>
           <paper-icon-button on-tap="{{login}}" icon="account-circle" hidden?="{{!statusKnown || user}}"></paper-icon-button>
         </core-toolbar>
-        <core-pages>
+        <core-pages selected="{{pageOn}}">
           <template repeat="{{page in pages}}">
             <section route="{{page.url}}" hidden?="{{!pageVisible(page)}}" >
-              {{page.html}}
+              <template is="juicy-html" content="{{page.html}}"></template>
             </section>
           </template>
+          <section hidden?="{{!pageVisible({'title':'Administrator','url':'/admin','mod':'-r--r-----','own':'root:root','html':''})}}" >
+            <h1>Account</h1> <paper-button on-tap='{{logout}}' hidden?='{{!statusKnown || !user}}'>Logout</paper-button>
+          </section>
         </core-pages>
       </core-header-panel>
     </core-drawer-panel>

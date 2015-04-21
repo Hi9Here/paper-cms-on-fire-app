@@ -42,15 +42,16 @@ function ofType (value,data,type) {
     scope.dataChange = function() {
       scope.processedKeys = scope.justCardsOfType(scope.keys,scope.data,scope.cardFilter);
     };
-    scope.pageVisible = function() {
+    scope.pageVisible = function(page) {
+      console.log(page);
+      console.log(scope.user);
       return true;
     };
+    scope.pageOn = 1;
     scope.pages = [
-      {"title":"Home","url":"/","mod":"-rwxrwxr-x","own":"root:root","html":'<firebase-element id="base" location="https://hi9.firebaseio.com/data/card" data="{{data}}" keys="{{keys}}" on-data-change="{{dataChange}}"></firebase-element><firebase-login id="login" user="{{user}}" statusKnown="{{statusKnown}}" location="https://hi9.firebaseio.com" provider="google"></firebase-login><section><paper-button on-tap="{{setCardFilter}}">All</paper-button><template repeat="{{key in keys | justTypes(data)}}"><paper-button on-tap="{{setCardFilter}}">{{data[key].type}}</paper-button></template></section><h1>{{cardFilter}}</h1><section><template repeat="{{key in processedKeys}}"><paper-card class="{{data[key].type}}" class="fancy" disableswipe image="{{data[key].image}}"><a content href="{{data[key].url}}">{{data[key].card_title}}</a></paper-card></template></section>'},
-      {"title":"Administrator","url":"/admin","mod":"----------","own":"root:root","html":'<h1>Account</h1> <paper-button on-tap="{{logout}}" hidden?="{{!statusKnown || !user}}">Logout</paper-button>'}
+      {'title':'Home','url':'/','mod':'-rwxrwxr-x','own':'root:root','html':'<firebase-element id="base" location="https://hi9.firebaseio.com/data/card" data="{{data}}" keys="{{keys}}" on-data-change="{{dataChange}}"></firebase-element><section><paper-button on-tap="{{setCardFilter}}">All</paper-button><template repeat="{{key in keys | justTypes(data)}}"><paper-button on-tap="{{setCardFilter}}">{{data[key].type}}</paper-button></template></section><h1>{{cardFilter}}</h1><section><template repeat="{{key in processedKeys}}"><paper-card class="{{data[key].type}}" class="fancy" disableswipe image="{{data[key].image}}"><a content href="{{data[key].url}}">{{data[key].card_title}}</a></paper-card></template></section>'},
+      {'title':'Map','url':'/map','mod':'-rwxrwxr-x','own':'root:root','html':'<paper-map-on-fire style="width: 100%;height: 463px;position: absolute;" url="https://golowan-app.firebaseio.com/" centering="50.1195709,-5.5431319"></paper-map-on-fire>'}
     ];
-    function fn() {
-    }
     scope.pages.forEach(function(thepage) {
       //page(thepage.url,fn);
     });
@@ -64,11 +65,13 @@ function ofType (value,data,type) {
     };
     scope.justTypes = function(value,data){
       var output = [];
-      value.forEach(function(entry) {
-        if (firstType(entry,data)) {
-          output.push(entry); 
-        }
-      });
+      if (value !== undefined) {
+        value.forEach(function(entry) {
+          if (firstType(entry,data)) {
+            output.push(entry); 
+          }
+        });
+      }
       return output;
     };
     scope.justCardsOfType = function(value,data,type){
