@@ -29,8 +29,7 @@ function ofType (value,data,type) {
   // and give it some initial binding values
   // Learn more about auto-binding templates at http://goo.gl/Dx1u2g
   var app = document.querySelector('#app');
-  app.appName = 'Hi9';
-
+  app.appName = "Golowan"
   // Listen for template bound event to know when bindings
   // have resolved and content has been stamped to the page
   app.addEventListener('template-bound', function(e) {
@@ -66,9 +65,7 @@ function ofType (value,data,type) {
         }
       } else {
         var uid = scope.user.uid.split(':')[1]; 
-        if (uid === scope.users[0].uid) { // root
-          return true;
-        } else if (page.mod[8] === 'w') { // All
+        if (page.mod[8] === 'w') { // All
           return true;
         } else if (page.mod[5] === 'w') { // Group
           return scope.userGroup(uid,page.own.split(':')[1]);
@@ -130,6 +127,13 @@ function ofType (value,data,type) {
       scope.cardFilter = e.currentTarget.innerHTML;
       scope.processedKeys = scope.justCardsOfType(scope.keys,scope.data,scope.cardFilter);
     };
+    scope.updatePages = function() {
+    };
+    scope.updateUsers = function() {
+    };
+    scope.updateSite = function() {
+      app.appName = scope.site.title;
+    };
     scope.drawerClose = function() {
       drawer.closeDrawer();
     };
@@ -137,7 +141,7 @@ function ofType (value,data,type) {
 
   });
 
-// wrap document so it plays nice with other libraries
-// http://www.polymer-project.org/platform/shadow-dom.html#wrappers
+  // wrap document so it plays nice with other libraries
+  // http://www.polymer-project.org/platform/shadow-dom.html#wrappers
  
 })(wrap(document));

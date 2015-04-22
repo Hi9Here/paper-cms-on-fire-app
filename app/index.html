@@ -23,15 +23,11 @@
 <body unresolved fullbleed layout vertical>
 
   <template is="auto-binding" id="app">
-
     <core-drawer-panel>
-
       <!-- Drawer -->
       <core-header-panel drawer>
-
         <!-- Drawer Toolbar -->
         <core-toolbar>Menu</core-toolbar>
-
         <!-- Drawer Content -->
         <core-menu id="menu" selected="{{pageOn}}">
           <template repeat="{{page in pages}}">
@@ -73,8 +69,9 @@
         </core-pages>
       </core-header-panel>
     </core-drawer-panel>
-    <firebase-element location='https://golowan.firebaseio.com/pages' data='{{pages}}' keys='{{pageKeys}}'></firebase-element>
-    <firebase-element location='https://golowan.firebaseio.com/users' data='{{users}}' keys='{{userKeys}}'></firebase-element>
+    <firebase-element location='https://golowan.firebaseio.com/pages' data='{{pages}}' keys='{{pageKeys}}' dataready></firebase-element>
+    <firebase-element location='https://golowan.firebaseio.com/users' data='{{users}}' keys='{{userKeys}}' dataready></firebase-element>
+    <firebase-element location='https://golowan.firebaseio.com/site'  data='{{site}}'  keys='{{siteKeys}}' dataready></firebase-element>
 
     <firebase-login id="login" user="{{user}}" statusKnown="{{statusKnown}}" location="https://hi9.firebaseio.com" provider="google"></firebase-login>
   </template>
