@@ -39,7 +39,7 @@
               <a href="#!{{page.url}}"></a>
             </core-item>
           </template>
-          <core-item hidden?='{{statusKnown || user}}'>Account</core-item>
+          <core-item hidden?='{{!statusKnown || !user}}'>Account</core-item>
         </core-menu>
       </core-header-panel>
 
@@ -62,12 +62,20 @@
               <template is="juicy-html" content="{{page.html}}"></template>
             </section>
           </template>
-          <section hidden?="{{!pageVisible({'title':'Administrator','url':'/admin','mod':'-r--r-----','own':'root:root','html':''})}}" >
-            <h1>Account</h1> <paper-button on-tap='{{logout}}' hidden?='{{!statusKnown || !user}}'>Logout</paper-button>
+          <section hidden?="{{!statusKnown || !user}}" >
+            <h1>Account</h1>
+
+            <papar-form-on-fire linkText="New Page" firebase_url_data="https://golowan.firebaseio.com/pages"
+              firebase_url_form="https://golowan.firebaseio.com/form"></papar-form-on-fire>
+            <paper-button on-tap='{{logout}}'>Logout</paper-button>
+            
           </section>
         </core-pages>
       </core-header-panel>
     </core-drawer-panel>
+    <firebase-element location='https://golowan.firebaseio.com/pages' data='{{pages}}' keys='{{pageKeys}}'></firebase-element>
+    <firebase-element location='https://golowan.firebaseio.com/users' data='{{users}}' keys='{{userKeys}}'></firebase-element>
+
     <firebase-login id="login" user="{{user}}" statusKnown="{{statusKnown}}" location="https://hi9.firebaseio.com" provider="google"></firebase-login>
   </template>
   
