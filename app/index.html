@@ -61,9 +61,12 @@
           <section hidden?="{{!statusKnown || !user}}" >
             <h1>Account</h1>
 
-            <paper-button>+</paper-button>
-            <papar-form-on-fire linkText="New Page" firebase_url_data="https://golowan.firebaseio.com/pages"
-              firebase_url_form="https://golowan.firebaseio.com/form"></papar-form-on-fire>
+            <paper-form-on-fire 
+              linkText="+" 
+              firebase_url_data="https://golowan.firebaseio.com/pages"
+              firebase_url_form="https://golowan.firebaseio.com/form"
+              >
+            </paper-form-on-fire>
             <paper-button on-tap='{{logout}}'>Logout</paper-button>
             
           </section>
