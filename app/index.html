@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hi9 Connecting the Unconnected</title>
+  <title>Paper Content Management</title>
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
   <!-- build:css styles/main.css -->
@@ -61,6 +61,7 @@
           <section hidden?="{{!statusKnown || !user}}" >
             <h1>Account</h1>
 
+            <paper-button>+</paper-button>
             <papar-form-on-fire linkText="New Page" firebase_url_data="https://golowan.firebaseio.com/pages"
               firebase_url_form="https://golowan.firebaseio.com/form"></papar-form-on-fire>
             <paper-button on-tap='{{logout}}'>Logout</paper-button>
@@ -69,9 +70,9 @@
         </core-pages>
       </core-header-panel>
     </core-drawer-panel>
-    <firebase-element location='https://golowan.firebaseio.com/pages' data='{{pages}}' keys='{{pageKeys}}' dataready></firebase-element>
-    <firebase-element location='https://golowan.firebaseio.com/users' data='{{users}}' keys='{{userKeys}}' dataready></firebase-element>
-    <firebase-element location='https://golowan.firebaseio.com/site'  data='{{site}}'  keys='{{siteKeys}}' dataready></firebase-element>
+    <firebase-element location='https://golowan.firebaseio.com/pages' data='{{pages}}' keys='{{pageKeys}}' data-change="{{updatePages}}"></firebase-element>
+    <firebase-element location='https://golowan.firebaseio.com/users' data='{{users}}' keys='{{userKeys}}' data-change="{{updateUsers}}"></firebase-element>
+    <firebase-element location='https://golowan.firebaseio.com/site'  data='{{site}}'  keys='{{siteKeys}}' data-change="{{updateSite}}"></firebase-element>
 
     <firebase-login id="login" user="{{user}}" statusKnown="{{statusKnown}}" location="https://hi9.firebaseio.com" provider="google"></firebase-login>
   </template>
@@ -80,6 +81,4 @@
   <!-- build:js scripts/app.js -->
   <script src="scripts/app.js"></script>
   <!-- endbuild-->
-</body>
-
-</html>
+</body></html>

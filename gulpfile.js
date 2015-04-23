@@ -166,6 +166,7 @@ gulp.task('serve', ['styles', 'elements'], function () {
   });
 
   gulp.watch(['app/**/*.html'], reload);
+  gulp.watch(['bower_components/**/*.html'], reload);
   gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
   gulp.watch(['app/elements/**/*.{scss,css}'], ['elements', reload]);
   gulp.watch(['app/{scripts,elements}/**/*.js'], ['jshint']);

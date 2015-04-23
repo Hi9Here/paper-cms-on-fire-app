@@ -29,7 +29,7 @@ function ofType (value,data,type) {
   // and give it some initial binding values
   // Learn more about auto-binding templates at http://goo.gl/Dx1u2g
   var app = document.querySelector('#app');
-  app.appName = "Golowan"
+  app.appName = 'Paper CMS';
   // Listen for template bound event to know when bindings
   // have resolved and content has been stamped to the page
   app.addEventListener('template-bound', function(e) {
@@ -77,9 +77,9 @@ function ofType (value,data,type) {
     };
 
     scope.userGroup = function(uid,group){
-      if (scope.users[uid].group === group) {  
+//      if (scope.users[uid].group === group) {  
         return true;
-      }
+  //    }
       return false;
     };
 
@@ -133,6 +133,7 @@ function ofType (value,data,type) {
     };
     scope.updateSite = function() {
       app.appName = scope.site.title;
+      document.title = scope.site.pagetitle;
     };
     scope.drawerClose = function() {
       drawer.closeDrawer();
