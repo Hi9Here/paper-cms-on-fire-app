@@ -70,11 +70,12 @@
         </core-pages>
       </core-header-panel>
     </core-drawer-panel>
-    <firebase-element location='https://golowan.firebaseio.com/pages' data='{{pages}}' keys='{{pageKeys}}' data-change="{{updatePages}}"></firebase-element>
-    <firebase-element location='https://golowan.firebaseio.com/users' data='{{users}}' keys='{{userKeys}}' data-change="{{updateUsers}}"></firebase-element>
-    <firebase-element location='https://golowan.firebaseio.com/site'  data='{{site}}'  keys='{{siteKeys}}' data-change="{{updateSite}}"></firebase-element>
+    
+    <firebase-element location='https://golowan.firebaseio.com/testing/pages' data='{{pages}}' keys='{{pageKeys}}' data-change="{{updatePages}}"></firebase-element>
+    <firebase-element location='https://golowan.firebaseio.com/testing/users' data='{{users}}' keys='{{userKeys}}' data-change="{{updateUsers}}"></firebase-element>
+    <firebase-element location='https://golowan.firebaseio.com/testing/site'  data='{{site}}'  keys='{{siteKeys}}' data-change="{{updateSite}}"></firebase-element>
 
-    <firebase-login id="login" user="{{user}}" statusKnown="{{statusKnown}}" location="https://hi9.firebaseio.com" provider="google"></firebase-login>
+    <firebase-login id="login" user="{{user}}" statusKnown="{{statusKnown}}" location="https://golowan.firebaseio.com" provider="google"></firebase-login>
   </template>
   
   <!-- <script src="bower_components/page/page.js"></script> -->
