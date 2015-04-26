@@ -59,10 +59,19 @@
             </section>
           </template>
           <section hidden?="{{!statusKnown || !user}}" >
-            <h1>Account</h1>
+            <h1>Setting</h1>
+            <template repeat="{{page, pageIndex in pages}}">
+              <core-item  hidden?="{{!pageWrite(page)}}" >
+              <paper-form-on-fire label="Edit: {{page.title}}"
+              content="{{pages}}"
+              content_key="{{pageIndex}}"
+              firebase_url_data="https://golowan.firebaseio.com/pages"
+              firebase_url_form="https://golowan.firebaseio.com/form"
+              ></paper-form-on-fire>
+              </core-item>
+            </template>
 
-            <paper-form-on-fire 
-              linkText="+" 
+            <paper-form-on-fire label="add page" 
               firebase_url_data="https://golowan.firebaseio.com/pages"
               firebase_url_form="https://golowan.firebaseio.com/form"
               >
@@ -74,9 +83,9 @@
       </core-header-panel>
     </core-drawer-panel>
     
-    <firebase-element location='https://golowan.firebaseio.com/testing/pages' data='{{pages}}' keys='{{pageKeys}}' data-change="{{updatePages}}"></firebase-element>
-    <firebase-element location='https://golowan.firebaseio.com/testing/users' data='{{users}}' keys='{{userKeys}}' data-change="{{updateUsers}}"></firebase-element>
-    <firebase-element location='https://golowan.firebaseio.com/testing/site'  data='{{site}}'  keys='{{siteKeys}}' data-change="{{updateSite}}"></firebase-element>
+    <firebase-element location='https://golowan.firebaseio.com/pages' data='{{pages}}' keys='{{pageKeys}}' data-change="{{updatePages}}"></firebase-element>
+    <firebase-element location='https://golowan.firebaseio.com/users' data='{{users}}' keys='{{userKeys}}' data-change="{{updateUsers}}"></firebase-element>
+    <firebase-element location='https://golowan.firebaseio.com/site'  data='{{site}}'  keys='{{siteKeys}}' data-change="{{updateSite}}"></firebase-element>
 
     <firebase-login id="login" user="{{user}}" statusKnown="{{statusKnown}}" location="https://golowan.firebaseio.com" provider="google"></firebase-login>
   </template>

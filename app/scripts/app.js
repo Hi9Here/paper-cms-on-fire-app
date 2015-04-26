@@ -56,6 +56,7 @@ function ofType (value,data,type) {
           return uid === page.own.split(':')[0];
         }
       }
+      return true;// remove
       return false;
     };
     scope.pageWrite = function(page) {
@@ -73,6 +74,7 @@ function ofType (value,data,type) {
           return uid === page.own.split(':')[0];
         }
       }
+      return true;// remove
       return false;
     };
 
