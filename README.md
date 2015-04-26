@@ -2,7 +2,9 @@
 
 ## install 
 ```
- sudo su
+sudo su
+```
+```
  cd
  wget https://iojs.org/dist/latest/iojs-v1.8.1-linux-x64.tar.gz
  tar xzf iojs-v1.8.1-linux-x64.tar.gz 
