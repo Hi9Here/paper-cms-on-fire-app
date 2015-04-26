@@ -63,7 +63,7 @@
             <template repeat="{{page, pageIndex in pages}}">
               <core-item  hidden?="{{!pageWrite(page)}}" >
               <paper-form-on-fire label="Edit: {{page.title}}"
-              content="{{pages}}"
+              content="{{page}}"
               content_key="{{pageIndex}}"
               firebase_url_data="https://golowan.firebaseio.com/pages"
               firebase_url_form="https://golowan.firebaseio.com/form"

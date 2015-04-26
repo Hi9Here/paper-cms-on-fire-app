@@ -14,7 +14,8 @@
     "paper-button": "Polymer/paper-button#^0.5",
     "google-map": "GoogleWebComponents/google-map#~0.4.2",
     "page": "visionmedia/page.js#~1.6.3",
-    "inner-html": "Marcus7777/innerHTML"
+    "inner-html": "Marcus7777/innerHTML",
+    "paper-map-on-fire": "HackITtoday/paper-map-on-fire"
   },
   "devDependencies": {
     "web-component-tester": "Polymer/web-component-tester#^2.2.3"
