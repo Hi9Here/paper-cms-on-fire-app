@@ -1,5 +1,4 @@
 <html lang="">
-
 <head>
   <meta charset="utf-8">
   <meta name="description" content="">
@@ -21,8 +20,9 @@
 </head>
 
 <body unresolved fullbleed layout vertical>
-
-  <template is="auto-binding" id="app">
+  <paper-cms-on-fire app="golowan"></paper-cms-on-fire>
+  <polymer-element name="paper-cms-on-fire" attributes="app">  
+    <template id="paper-cms-on-fire">
     <core-drawer-panel>
       <!-- Drawer -->
       <core-header-panel drawer>
@@ -65,15 +65,15 @@
               <paper-form-on-fire label="Edit: {{page.title}}"
               content="{{page}}"
               content_key="{{pageIndex}}"
-              firebase_url_data="https://golowan.firebaseio.com/pages"
-              firebase_url_form="https://golowan.firebaseio.com/form"
+              firebase_url_data="https://{{app}}.firebaseio.com/pages"
+              firebase_url_form="https://{{app}}.firebaseio.com/form"
               ></paper-form-on-fire>
               </core-item>
             </template>
 
             <paper-form-on-fire label="add page" 
-              firebase_url_data="https://golowan.firebaseio.com/pages"
-              firebase_url_form="https://golowan.firebaseio.com/form"
+              firebase_url_data="https://{{app}}.firebaseio.com/pages"
+              firebase_url_form="https://{{app}}.firebaseio.com/form"
               >
             </paper-form-on-fire>
             <paper-button on-tap='{{logout}}'>Logout</paper-button>
@@ -83,15 +83,159 @@
       </core-header-panel>
     </core-drawer-panel>
     
-    <firebase-element location='https://golowan.firebaseio.com/pages' data='{{pages}}' keys='{{pageKeys}}' data-change="{{updatePages}}"></firebase-element>
-    <firebase-element location='https://golowan.firebaseio.com/users' data='{{users}}' keys='{{userKeys}}' data-change="{{updateUsers}}"></firebase-element>
-    <firebase-element location='https://golowan.firebaseio.com/site'  data='{{site}}'  keys='{{siteKeys}}' data-change="{{updateSite}}"></firebase-element>
+    <firebase-element location='https://{{app}}.firebaseio.com/pages' data='{{pages}}' keys='{{pageKeys}}' data-change="{{updatePages}}"></firebase-element>
+    <firebase-element location='https://{{app}}.firebaseio.com/users' data='{{users}}' keys='{{userKeys}}' data-change="{{updateUsers}}"></firebase-element>
+    <firebase-element location='https://{{app}}.firebaseio.com/site'  data='{{site}}'  keys='{{siteKeys}}' data-change="{{updateSite}}"></firebase-element>
 
-    <firebase-login id="login" user="{{user}}" statusKnown="{{statusKnown}}" location="https://golowan.firebaseio.com" provider="google"></firebase-login>
-  </template>
+    <firebase-login id="login" user="{{user}}" login="{{addUser()}}" statusKnown="{{statusKnown}}" location="https://{{app}}.firebaseio.com" provider="google"></firebase-login>
+    </template>
   
-  <!-- <script src="bower_components/page/page.js"></script> -->
-  <!-- build:js scripts/app.js -->
-  <script src="scripts/app.js"></script>
+  <script>
+  
+  'use strict';
+function firstType (value,data) {
+  var isFirst = false;
+  for(var index in data) { 
+    var attr = data[index].type; 
+    if (data[value].type === attr) {
+      if (isFirst) {
+        return false;
+      } else {
+        isFirst = true;
+      }
+      if (index === value) {
+        return isFirst;
+      }
+    }
+  }
+  return true;
+}  
+function ofType (value,data,type) {
+  if (data[value].type !== type) {
+    return false;
+  } else {
+    return true;
+  }
+}
+  Polymer("paper-cms-on-fire", {
+
+    ready: function() {
+      console.log('Our app is ready to rock!');
+      var fbLogin = document.querySelector('#login');
+      // var fbData = document.querySelector('#base');
+      var drawer = document.querySelector('core-drawer-panel');
+    },  
+    dataChange : function() {
+      this.processedKeys = this.justCardsOfType(this.keys,this.data,this.cardFilter);
+    },
+    pageVisible : function(page) {
+      if (this.user === undefined) {
+        if (page.mod[7] === 'r') {
+          return true;
+        }
+      } else {
+        var uid = CryptoJS.SHA256(this.user.uid) + '';
+        if (page.mod[7] === 'r') { // All
+          return true;
+        } else if (page.mod[4] === 'r') { // Group
+          return this.userGroup(uid,page.group);
+        } else if (page.mod[1] === 'r') { // User
+          return uid === page.own;
+        }
+      }
+      return true;// remove
+      return false;
+    },
+    pageWrite : function(page) {
+      if (this.user === undefined) {
+        if (page.mod[8] === 'w') {
+          return true;
+        }
+      } else {
+        var uid = CryptoJS.SHA256(this.user.uid) + '';
+        if (page.mod[8] === 'w') { // All
+          return true;
+        } else if (page.mod[5] === 'w') { // Group
+          return this.userGroup(uid,page.group);
+        } else if (page.mod[2] === 'w') { // User
+          return uid === page.own;
+        }
+      }
+      return true;// remove
+      return false;
+    },
+    userGroup : function(uid,group){
+//      if (this.users[uid].group === group) {  
+        return true;
+  //    }
+      return false;
+    },
+    pageOn : 0,
+
+//    this.pages.forEach(function(thepage) {
+//      page(thepage.url,fn);
+  //  });
+    login : function() {
+      try {
+        this.params = JSON.parse(document.querySelector('#params').value);
+      } catch (e) {
+        this.params = null;
+      }
+      fbLogin.login();
+    },
+    justTypes : function(value,data){
+      var output = [];
+      if (value !== undefined) {
+        value.forEach(function(entry) {
+          if (firstType(entry,data)) {
+            output.push(entry); 
+          }
+        });
+      }
+      return output;
+    },
+    justCardsOfType : function(value,data,type){
+      if (type === 'All') {
+        return value;
+      } else {
+        var output = [];
+        value.forEach(function(entry) {
+          if (ofType(entry,data,type)) {
+            output.push(entry); 
+          }
+        });
+        return output;
+      }
+    },
+    logout : function() {
+      fbLogin.logout();
+    },
+    setCardFilter : function(e) {
+      this.cardFilter = e.currentTarget.innerHTML;
+      this.processedKeys = this.justCardsOfType(this.keys,this.data,this.cardFilter);
+    },
+    updatePages : function() { },
+    updateUsers : function() { },
+    updateSite : function() {
+      app.appName = this.site.title;
+      document.title = this.site.pagetitle;
+    },
+    addUser : function() {
+      if (this.user !== undefined) {
+        var uid = CryptoJS.SHA256(this.user.uid) + '';
+        console.log('add user ' + uid);
+        if (this.users[uid] !== undefined ) {
+          this.users[uid] = {group : 'user'}
+        }
+      }
+    },
+    drawerClose : function() {
+      drawer.closeDrawer();
+    },
+    cardFilter : 'All'
+  });
+ 
+  </script>
+</polymer-element>
   <!-- endbuild-->
 </body></html>

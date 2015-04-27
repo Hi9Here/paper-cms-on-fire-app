@@ -47,13 +47,13 @@ function ofType (value,data,type) {
           return true;
         }
       } else {
-        var uid = scope.user.uid.split(':')[1]; 
+        var uid = CryptoJS.SHA256(this.user.uid) + '';
         if (page.mod[7] === 'r') { // All
           return true;
         } else if (page.mod[4] === 'r') { // Group
-          return scope.userGroup(uid,page.own.split(':')[1]);
+          return scope.userGroup(uid,page.group);
         } else if (page.mod[1] === 'r') { // User
-          return uid === page.own.split(':')[0];
+          return uid === page.own;
         }
       }
       return true;// remove
@@ -65,13 +65,13 @@ function ofType (value,data,type) {
           return true;
         }
       } else {
-        var uid = scope.user.uid.split(':')[1]; 
+        var uid = CryptoJS.SHA256(this.user.uid) + '';
         if (page.mod[8] === 'w') { // All
           return true;
         } else if (page.mod[5] === 'w') { // Group
-          return scope.userGroup(uid,page.own.split(':')[1]);
+          return scope.userGroup(uid,page.group);
         } else if (page.mod[2] === 'w') { // User
-          return uid === page.own.split(':')[0];
+          return uid === page.own;
         }
       }
       return true;// remove
@@ -137,14 +137,17 @@ function ofType (value,data,type) {
       app.appName = scope.site.title;
       document.title = scope.site.pagetitle;
     };
+    scope.addUser = function() {
+      var uid = CryptoJS.SHA256(this.user.uid) + '';
+      console.log('add user ' + uid);
+      if (this.users[uid] !== undefined ) {
+        this.users[uid] = {group : 'user'}
+      }
+    };
     scope.drawerClose = function() {
       drawer.closeDrawer();
     };
     scope.cardFilter = 'All';
-
   });
-
-  // wrap document so it plays nice with other libraries
-  // http://www.polymer-project.org/platform/shadow-dom.html#wrappers
  
 })(wrap(document));
