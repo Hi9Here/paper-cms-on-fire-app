@@ -15,7 +15,8 @@
     "google-map": "GoogleWebComponents/google-map#~0.4.2",
     "page": "visionmedia/page.js#~1.6.3",
     "inner-html": "Marcus7777/innerHTML",
-    "paper-map-on-fire": "HackITtoday/paper-map-on-fire"
+    "paper-map-on-fire": "HackITtoday/paper-map-on-fire",
+    "crypto-js": "marcus7777/crypto-js"
   },
   "devDependencies": {
     "web-component-tester": "Polymer/web-component-tester#^2.2.3"
