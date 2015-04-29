@@ -8,9 +8,12 @@ install node
 ```
  cd
  wget https://iojs.org/dist/latest/iojs-v1.8.1-linux-x64.tar.gz
- tar xzf iojs-v*-linux-x64.tar.gz && rm iojs-v*-linux-x64.* && cd iojs-v.*/ && cp bin/* /usr/bin
- cd && rm iojs-v*-linux-x64*
+ tar -xzf iojs-v1.8.1-linux-x64.tar.gz
+ cd iojs-v.*
+ cp bin/* /usr/bin
  cd
+ rm iojs-v*-linux-* -fr
+
  wget https://npmjs.org/install.sh
  chmod +x install.sh
  sudo ./install.sh
