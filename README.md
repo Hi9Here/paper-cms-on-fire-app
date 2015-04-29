@@ -23,7 +23,7 @@ install node
  exit
  
 git clone https://github.com/HackITtoday/paper-cms-on-fire-app
-cd paper-cms-on-fire 
+cd paper-cms-on-fire-app
 npm install && bower install
 gulp serve
 ```
