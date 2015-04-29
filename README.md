@@ -22,7 +22,7 @@ install node
  gem install compass
  exit
  
-git clone https://github.com/HackITtoday/paper-cms-on-fire
+git clone https://github.com/HackITtoday/paper-cms-on-fire-app
 cd paper-cms-on-fire 
 npm install && bower install
 gulp serve
