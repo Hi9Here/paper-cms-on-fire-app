@@ -22,7 +22,8 @@ install node
  cd
  apt-get install ruby-full -y
  gem install compass
- exit
+ 
+exit
  
 git clone https://github.com/HackITtoday/paper-cms-on-fire-app
 cd paper-cms-on-fire-app
