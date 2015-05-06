@@ -9,7 +9,7 @@ install node
  cd
  wget https://iojs.org/dist/latest/iojs-v2.0.0-linux-x64.tar.gz
  tar -xzf iojs-v2.0.0-linux-x64.tar.gz
- cd iojs-v.*
+ cd iojs-*
  cp bin/* /usr/bin
  cd
 
